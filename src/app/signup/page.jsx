@@ -11,9 +11,20 @@ const page = () => {
       name: e.target.name.value,
       email: e.target.email.value,
       password: e.target.password.value,
-    }
+    };
     console.log(newUser);
-    
+
+    const resp = await fetch("http://localhost:3000/signup/api", {
+      method: "POST",
+      body: JSON.stringify(newUser),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    console.log(resp);
+    if(resp.status === 200) {
+      e.target.reset();
+    }
   };
 
   return (
